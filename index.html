@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Jazmín ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff4e8a,#ff9ecf);
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:center;
+    overflow:hidden;
+    position:relative;
+}
+
+h1{
+    color:white;
+    font-size:2.5em;
+    margin-bottom:30px;
+    animation:aparecer 2s ease;
+}
+
+button{
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.2s;
+    margin:10px;
+}
+
+#si{
+    background:white;
+    color:#ff2f7d;
+}
+
+#no{
+    background:#ff2f7d;
+    color:white;
+    position:absolute;
+}
+
+.mensaje{
+    position:absolute;
+    top:20%;
+    color:white;
+    font-size:1.8em;
+    font-weight:bold;
+    animation:aparecer 1s ease;
+}
+
+@keyframes aparecer{
+    from{opacity:0; transform:scale(0.5);}
+    to{opacity:1; transform:scale(1);}
+}
+
+/* corazones flotando */
+.corazon{
+    position:absolute;
+    color:white;
+    font-size:20px;
+    animation:flotar 6s linear infinite;
+}
+
+@keyframes flotar{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Jazmín… ¿querés ser mi San Valentín? 💘</h1>
+
+<div id="botones">
+    <button id="si">Sí 💖</button>
+    <button id="no">No 😢</button>
+</div>
+
+<script>
+const btnNo = document.getElementById("no");
+const btnSi = document.getElementById("si");
+const body = document.body;
+
+// mover botón NO
+btnNo.addEventListener("touchstart", mover);
+btnNo.addEventListener("mouseover", mover);
+
+function mover(){
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    btnNo.style.left = x + "px";
+    btnNo.style.top = y + "px";
+}
+
+// mensaje al aceptar
+btnSi.addEventListener("click", () => {
+    body.innerHTML = '<div class="mensaje">Sabía que ibas a decir que sí 💖<br>Te amo muchísimo 🥰</div>';
+    crearCorazones();
+});
+
+// crear corazones
+function crearCorazones(){
+    setInterval(() => {
+        const corazon = document.createElement("div");
+        corazon.className = "corazon";
+        corazon.innerHTML = "💖";
+        corazon.style.left = Math.random() * 100 + "vw";
+        corazon.style.fontSize = (Math.random()*20 + 10) + "px";
+        body.appendChild(corazon);
+
+        setTimeout(() => {
+            corazon.remove();
+        }, 6000);
+    }, 300);
+}
+</script>
+
+</body>
+  </html>
